@@ -47,5 +47,16 @@ namespace APITest.Controllers
             return Ok(employeeEntity);
         }
 
+        [HttpGet]
+        [Route("{id:guid}")]
+        public IActionResult GetEmployeeByID(Guid id)
+        {
+           var employeeID=dbContext.Employees.Find(id);
+            if(employeeID is null)
+            {
+                return NotFound("Cant Found Employee");
+            }
+           return Ok(employeeID);
+        }
     }
 }
